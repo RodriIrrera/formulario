@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="validacion.js"></script>
+    <script src="español.js"></script>
+    <script>
+
+        $(document).ready(function(){
+            
+            $("#form_datos").validate({
+                // si hago validate() puedo usar required desde el campo del formulario. el tema que si quiero aplicar mas de una validacion a un campo tengo que hacer esto.
+
+                rules: {
+    
+                    nombre: "required",
+                    apellido: "required",
+                    edad: {
+                        required: true,
+                        range: [1, 100]
+                    },
+                    nacimiento: "required",
+                    usuario: "required",
+                    password: {
+                        required: true,
+                        minlength: 8
+                    },
+                    newpassword: {
+                        required: true,
+                        minlength: 8,
+                        equalTo: "#password"
+                    },
+                    email: "required",
+                    website: {
+                        required: true,
+                        url: true
+                    },
+                    condiciones: "required"
+                    
+                },
+
+                messages: {
+
+                    //nombre: "Complete su nombre",
+                    //apellido: "Complete su apellido"
+                    //password: {
+                        //required: "Ponga una contraseña",
+                        //minlength: "Debe tener 8 caracteres"
+                    //}
+
+
+                },
+
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+    <div id="contenedor">
+        <form action="" id="form_datos" method="POST">
+        <h2>Registro</h2>
+        <label for="">Nombre: </label>
+        <input type="text" name="nombre" id="nombre" required><br>
+        <label for="">Apellido: </label>
+        <input type="text" name="apellido" id="apellido"><br>
+        <label for="">Edad: </label>
+        <input type="number" name="edad" id="edad"><br>
+        <label for="">Fecha de Nacimiento: </label>
+        <input type="date" name="nacimiento" id="nacimiento"><br>
+        <label for="">Usuario: </label>
+        <input type="text" name="usuario" id="usuario"><br>
+        <label for="">Contraseña: </label>
+        <input type="password" name="password" id="password"><br>
+        <label for="">Confirmar contraseña: </label>
+        <input type="password" name="newpassword" id="newpassword"><br>
+        <label for="">Email: </label>
+        <input type="email" name="email" id="email"><br>
+        <label for="">Website: </label>
+        <input type="url" name="website" id="website"><br>
+        <label for="">Acepto términos y condiciones<input type="checkbox" id="condiciones" name="condiciones"></label><br>
+        <label for="">Me gustaría recibir promociones<input type="checkbox" id="promociones"></label><br>
+        <input type="submit" value="Enviar" id="enviar">
+    </form>
+    </div>
+</body>
+</html>
